@@ -139,7 +139,7 @@ namespace StorybrewScripts
         }
         public void Background()
         {
-            var bg = GetLayer("BG").CreateSprite("BG.jpg", OsbOrigin.Centre);
+            var bg = GetLayer("BG").CreateSprite("0.jpg", OsbOrigin.Centre);
             var bgKiai = GetLayer("BG").CreateSprite("SB/2.jpg", OsbOrigin.Centre);
             var bgBlur = GetLayer("BG").CreateSprite("SB/1.jpg", OsbOrigin.Centre);
             var bgWTF = GetLayer("BG").CreateSprite("SB/3.jpg", OsbOrigin.Centre);
