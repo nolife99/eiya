@@ -25,7 +25,7 @@ public class TextManager
             position.X = 300;
             scale = 0.25f;
         }
-        else if (heading == false)
+        else
         {
             position.Y = 460;
             position.X = 320;
