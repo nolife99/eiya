@@ -4,11 +4,21 @@ Script: "Effects"
 Config:
   RandomSeed:
     Type: "System.Int32"
-    Value: "0"
+    Value: "2"
     DisplayName: "Random seed"
 Layers:
   9006206a275c46838a7d89d46e42f096:
     Name: "BG"
+    OsbLayer: Background
+    DiffSpecific: No
+    Visible: Yes
+  cdb0e1ce255e4f54b4a4497d1154c4d9:
+    Name: "Highlight"
+    OsbLayer: Background
+    DiffSpecific: No
+    Visible: Yes
+  cd10e55944d342acb4830f4ad013bb84:
+    Name: "highlight fade"
     OsbLayer: Background
     DiffSpecific: No
     Visible: Yes
@@ -17,8 +27,18 @@ Layers:
     OsbLayer: Background
     DiffSpecific: No
     Visible: Yes
+  05783d2a5f5b4080bb0312ee44fae4f6:
+    Name: "hl"
+    OsbLayer: Pass
+    DiffSpecific: Yes
+    Visible: Yes
   e16011a2fec54479b02673db272cd983:
     Name: "TEXT"
-    OsbLayer: Background
+    OsbLayer: Foreground
+    DiffSpecific: No
+    Visible: Yes
+  2efaad93b8134880b41f4e6f020d0837:
+    Name: "flash"
+    OsbLayer: Foreground
     DiffSpecific: No
     Visible: Yes

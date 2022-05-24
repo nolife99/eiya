@@ -1,8 +1,12 @@
 ﻿FormatVersion: 7
-BeatmapId: 0
-BeatmapName: "sb"
+BeatmapId: 652034
+BeatmapName: "Eternal Night"
 Assemblies:
 Layers:
   - "9006206a275c46838a7d89d46e42f096"
+  - "cdb0e1ce255e4f54b4a4497d1154c4d9"
+  - "cd10e55944d342acb4830f4ad013bb84"
   - "a71ba070d29b405e9e1ff7c51a4fd3b9"
+  - "05783d2a5f5b4080bb0312ee44fae4f6"
   - "e16011a2fec54479b02673db272cd983"
+  - "2efaad93b8134880b41f4e6f020d0837"

@@ -1,9 +1,9 @@
+using OpenTK;
 using OpenTK.Graphics;
 using StorybrewCommon.Scripting;
 using StorybrewCommon.Storyboarding;
+using StorybrewCommon.Mapset;
 using System;
-using System.Drawing;
-using System.IO;
 
 namespace StorybrewScripts
 {
@@ -13,6 +13,12 @@ namespace StorybrewScripts
         {
             Background();
             Particles(21225, 295962, 319330, 379646);
+            Highlight(114699, 155120, 250, true);
+            Highlight(230909, 271330, 250, true);
+            Highlight(319330, 379646, 250, true);
+            ObjectHighlight(21225, 51462);
+            ObjectHighlight(286488, 298488);
+            ObjectHighlight(359751, 379646);
 
             TextManager textManager = new TextManager(this);
             textManager.VerticalLetter("凋叶棕 ft. めらみぽっぷ", 21225, 25014, true, "Bold");
@@ -55,7 +61,7 @@ namespace StorybrewScripts
             textManager.VerticalLetter("共に眠れればと…”", 218278, 220488);
             textManager.VerticalLetter("そうしてまた、秋の空に", 220804, 225225);
             textManager.VerticalLetter("偽りの月が昇る。", 225541, 229646);
-            textManager.VerticalLetter("さあ急げ、夜を翔べ！", 230278, 235014);
+            textManager.VerticalLetter("さあ急げ、夜を翔べ！", 230278, 234857);
             textManager.VerticalLetter("月の兎は何を見上げてる。", 235330, 239751);
             textManager.VerticalLetter("永遠の、咎人が。", 240383, 244962);
             textManager.VerticalLetter("その秘密を隠して立っている。", 245436, 250014);
@@ -139,11 +145,11 @@ namespace StorybrewScripts
         }
         public void Background()
         {
-            var bg = GetLayer("BG").CreateSprite("0.jpg", OsbOrigin.Centre);
+            var bg = GetLayer("BG").CreateSprite("BG.jpg", OsbOrigin.Centre);
             var bgKiai = GetLayer("BG").CreateSprite("SB/2.jpg", OsbOrigin.Centre);
-            var bgBlur = GetLayer("BG").CreateSprite("SB/1.jpg", OsbOrigin.Centre);
+            var bgBlur = GetLayer("highlight fade").CreateSprite("SB/1.jpg", OsbOrigin.Centre);
             var bgWTF = GetLayer("BG").CreateSprite("SB/3.jpg", OsbOrigin.Centre);
-            var flash = GetLayer("BG").CreateSprite("SB/p.jpg", OsbOrigin.Centre);
+            var flash = GetLayer("flash").CreateSprite("SB/p.jpg", OsbOrigin.Centre);
 
             bg.Fade(-253, 0);
             bg.Scale(21220, 0.7);
@@ -180,7 +186,7 @@ namespace StorybrewScripts
             bgKiai.Fade(329431, 1);
             bgKiai.Fade(338273, 339378, 1, 0);
             bgKiai.Fade(339536, 1);
-            bgKiai.Move(339541, 359593, 370, 220, 270, 270);
+            bgKiai.Move(339541, 359593, 370, 240, 300, 240);
             bgKiai.Fade(349010, 349483, 1, 0);
             bgKiai.Fade(349646, 1);
             bgKiai.Fade(359120, 359593, 1, 0);
@@ -223,17 +229,82 @@ namespace StorybrewScripts
             flash.Fade(319330, 320330, 1, 0);
             flash.Fade(329431, 330694, 1, 0);
             flash.Fade(339536, 340799, 1, 0);
-            flash.Fade(349641, 350904, 1, 0);
+            flash.Fade(349646, 350646, 1, 0);
             flash.Fade(359751, 361014, 1, 0);
             flash.Fade(364804, 366067, 1, 0);
             flash.Fade(369857, 371120, 1, 0);
             flash.Fade(374909, 376172, 1, 0);
-            flash.Fade(377436, 378067, 1, 0);
-            flash.Fade(377751, 378382, 1, 0);
-            flash.Fade(378067, 378698, 1, 0);
-            flash.Fade(378383, 379015, 1, 0);
+            flash.Fade(377436, 377751, 1, 0);
+            flash.Fade(377751, 378067, 1, 0);
+            flash.Fade(378067, 378383, 1, 0);
+            flash.Fade(378383, 378699, 1, 0);
+            flash.Fade(378699, 379488, 1, 0);
             flash.Fade(379488, 379646, 1, 0);
             flash.Fade(379646, 380593, 1, 0);
+        }
+        public void Highlight(int startTime, int endTime, int timeStep, bool RandomFade)
+        {
+            for (int i = startTime; i < endTime - 1000; i += timeStep)
+            {
+                var Fade = 0.015;
+                var fadeTime = Random(1000, 2000);
+                var sprite = GetLayer("Highlight").CreateSprite("SB/l.png");
+                var pos = new Vector2(Random(0, 727), Random(10, 380));
+                var newPos = new Vector2(Random(-107, 854), Random(-17, 480));
+                double fade = 0;
+
+                if (RandomFade)
+                {
+                    fade = Math.Round(Random(0.02, 0.03), 2);
+                    sprite.Move(OsbEasing.OutSine, i, i + fadeTime * 2, pos, newPos);
+                }
+                else
+                {
+                    fade = Fade;
+                    sprite = GetLayer("Highlight").CreateSprite("SB/l.png", OsbOrigin.Centre, newPos);
+                }
+                sprite.Fade(i, i + 250, 0, fade);
+                if (fade > 0.01)
+                {
+                    sprite.Fade(OsbEasing.InSine, i + fadeTime, i + fadeTime * 2, fade, 0);
+                }
+                sprite.Scale(OsbEasing.InOutSine, i, i + fadeTime * 2, Math.Round(Random(0.85, 2), 2), 0);
+            }
+        }
+        public void ObjectHighlight(int startTime, int endTime)
+        {
+            var hitobjectLayer = GetLayer("hl");
+            foreach (var hitobject in Beatmap.HitObjects)
+            {
+                if ((startTime != 0 || endTime != 0) && 
+                    (hitobject.StartTime < startTime - 5 || endTime - 5 <= hitobject.StartTime))
+                    continue;
+
+                var sprite = hitobjectLayer.CreateSprite("SB/l.png", OsbOrigin.Centre, hitobject.Position);
+                sprite.Scale(hitobject.StartTime, 0.4);
+                sprite.Fade(OsbEasing.Out, hitobject.StartTime, hitobject.EndTime + 1000, 0.7, 0);
+                sprite.Additive(hitobject.StartTime);
+                sprite.Color(hitobject.StartTime, hitobject.Color);
+
+                if (hitobject is OsuSlider)
+                {
+                    var timestep = Beatmap.GetTimingPointAt((int)hitobject.StartTime).BeatDuration / 8;
+                    var StartTime = hitobject.StartTime;
+                    while (true)
+                    {
+                        var EndTime = StartTime + timestep;
+
+                        var complete = hitobject.EndTime - EndTime < 5;
+                        if (complete) EndTime = hitobject.EndTime;
+
+                        var startPosition = sprite.PositionAt(StartTime);
+                        sprite.Move(StartTime, EndTime, startPosition, hitobject.PositionAtTime(EndTime));
+
+                        if (complete) break;
+                        StartTime += timestep;
+                    }
+                }
+            }
         }
     }
 }
