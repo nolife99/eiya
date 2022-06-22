@@ -2,6 +2,7 @@ using OpenTK;
 using OpenTK.Graphics;
 using StorybrewCommon.Scripting;
 using StorybrewCommon.Storyboarding;
+using StorybrewCommon.Storyboarding.Util;
 using StorybrewCommon.Mapset;
 using System;
 
@@ -24,47 +25,48 @@ namespace StorybrewScripts
             textManager.VerticalLetter("凋叶棕 ft. めらみぽっぷ", 21225, 25014, true, "Bold");
             textManager.VerticalLetter("永夜 「Imperishable Challengers」", 26278, 30067, true, "Bold");
             textManager.VerticalLetter("Map and Storyboard by -Tochi", 31330, 33857, true, "Bold");
+            //lyrics
             textManager.VerticalLetter("そして昇りゆく日の光に、", 54067, 58646);
-            textManager.VerticalLetter("「一回休み」を知っては。", 59120, 63541);
+            textManager.VerticalLetter("「一回休み」を知っては", 59120, 63541);
             textManager.VerticalLetter("満身創痍の体を抱え、", 64172, 68593);
-            textManager.VerticalLetter("明ける空の下眠りゆく。", 69225, 73646);
+            textManager.VerticalLetter("明ける空の下眠りゆく", 69225, 73646);
             textManager.VerticalLetter("“ ―気がつけばあんたはどこかへ消えて、", 83909, 86593);
-            textManager.VerticalLetter("朝靄に立ち尽くす私。”", 87067, 89120);
+            textManager.VerticalLetter("朝靄に立ち尽くす私”", 87067, 89120);
             textManager.VerticalLetter("“どうせまた、何食わぬ顔で", 89593, 91646);
             textManager.VerticalLetter("現れるのでしょう？”", 92120, 93699);
-            textManager.VerticalLetter("“―秘策とは何か。勝つために常に", 94014, 96699);
-            textManager.VerticalLetter("敵を知り己を知ること。”", 97172, 99383);
+            textManager.VerticalLetter("“―秘策とは何か勝つために常に", 94014, 96699);
+            textManager.VerticalLetter("敵を知り己を知ること”", 97172, 99383);
             textManager.VerticalLetter("“だというのに、こいつはどうして", 99541, 101909);
             textManager.VerticalLetter("寝て過ごしているんだ？”", 102067, 104278);
             textManager.VerticalLetter("そうしてまた、秋の空に", 104593, 109014);
-            textManager.VerticalLetter("偽りの月が昇る。", 109330, 113436);
+            textManager.VerticalLetter("偽りの月が昇る", 109330, 113436);
             textManager.VerticalLetter("さあ急げ、夜を翔べ！", 114067, 118804);
-            textManager.VerticalLetter("今宵こそはと、月の照らす下。", 119120, 123857);
+            textManager.VerticalLetter("今宵こそはと、月の照らす下", 119120, 123857);
             textManager.VerticalLetter("蛍を追え、夜雀を追え！", 124172, 128909);
-            textManager.VerticalLetter("全てはこの大儀の為すがまま。", 129225, 133962);
+            textManager.VerticalLetter("全てはこの大儀の為すがまま", 129225, 133962);
             textManager.VerticalLetter("仮初の", 134909, 139014);
             textManager.VerticalLetter("永遠は、", 139962, 143751);
             textManager.VerticalLetter("続くのか？", 145014, 148804);
             textManager.VerticalLetter("その彼方、", 150067, 153857);
-            textManager.VerticalLetter("向かって―。", 154646, 157014);
+            textManager.VerticalLetter("向かって―", 154646, 157014);
             textManager.VerticalLetter("どこか胸が騒ぐこんな夜は、", 170278, 174699);
-            textManager.VerticalLetter("歴史の影に身を潜め。", 175330, 179751);
+            textManager.VerticalLetter("歴史の影に身を潜め", 175330, 179751);
             textManager.VerticalLetter("光る竹の一つになった方は、", 180383, 184962);
-            textManager.VerticalLetter("次の夜をただ待っている。", 185436, 190014);
+            textManager.VerticalLetter("次の夜をただ待っている", 185436, 190014);
             textManager.VerticalLetter("“―誰しも秘密の一つや二つ", 200199, 202804);
             textManager.VerticalLetter("こっそり抱えているものでしょう？", 203120, 205330);
             textManager.VerticalLetter("私のズル休みのこと", 205646, 208014);
-            textManager.VerticalLetter("は誰も知らない。”", 208172, 210067);
+            textManager.VerticalLetter("は誰も知らない”", 208172, 210067);
             textManager.VerticalLetter("“―主に先駆けて眠ることなど、", 210225, 212909);
-            textManager.VerticalLetter("仕える者にあるまじきこと。", 213225, 215436);
+            textManager.VerticalLetter("仕える者にあるまじきこと", 213225, 215436);
             textManager.VerticalLetter("けれど今朝は床を並べて", 215751, 217962);
             textManager.VerticalLetter("共に眠れればと…”", 218278, 220488);
             textManager.VerticalLetter("そうしてまた、秋の空に", 220804, 225225);
-            textManager.VerticalLetter("偽りの月が昇る。", 225541, 229646);
+            textManager.VerticalLetter("偽りの月が昇る", 225541, 229646);
             textManager.VerticalLetter("さあ急げ、夜を翔べ！", 230278, 234857);
-            textManager.VerticalLetter("月の兎は何を見上げてる。", 235330, 239751);
-            textManager.VerticalLetter("永遠の、咎人が。", 240383, 244962);
-            textManager.VerticalLetter("その秘密を隠して立っている。", 245436, 250014);
+            textManager.VerticalLetter("月の兎は何を見上げてる", 235330, 239751);
+            textManager.VerticalLetter("永遠の、咎人が", 240383, 244962);
+            textManager.VerticalLetter("その秘密を隠して立っている", 245436, 250014);
             textManager.VerticalLetter("偽りの", 251120, 255225);
             textManager.VerticalLetter("箱庭を、", 256172, 260278);
             textManager.VerticalLetter("壊しては、", 261225, 265172);
@@ -73,20 +75,20 @@ namespace StorybrewScripts
             textManager.VerticalLetter("幾度も夜を止めては", 276067, 280330);
             textManager.VerticalLetter("夜明けに涙を呑んだ", 281120, 285699);
             textManager.VerticalLetter("全ての「永夜の報い」を", 286488, 290436);
-            textManager.VerticalLetter("受けよと、今、不滅の挑戦者達。", 290909, 296593);
-            textManager.VerticalLetter("さあ遂に、辿りつく。", 298488, 303067);
-            textManager.VerticalLetter("本物の満月の光の中。", 303541, 308120);
-            textManager.VerticalLetter("いつか見た、昔話。", 308593, 313172);
-            textManager.VerticalLetter("なよ竹の姫の御座すれば。", 313646, 318225);
+            textManager.VerticalLetter("受けよと、今、不滅の挑戦者達", 290909, 296593);
+            textManager.VerticalLetter("さあ遂に、辿りつく", 298488, 303067);
+            textManager.VerticalLetter("本物の満月の光の中", 303541, 308120);
+            textManager.VerticalLetter("いつか見た、昔話", 308593, 313172);
+            textManager.VerticalLetter("なよ竹の姫の御座すれば", 313646, 318225);
             textManager.VerticalLetter("さあ元凶を、打ち倒せ！", 318699, 323278);
             textManager.VerticalLetter("けして解かれぬ難題を解き明かせ！", 323751, 328330);
-            textManager.VerticalLetter("永き夜のその最後は。", 328804, 333383);
-            textManager.VerticalLetter("永夜の術が、翻る。", 333857, 338436);
+            textManager.VerticalLetter("永き夜のその最後は", 328804, 333383);
+            textManager.VerticalLetter("永夜の術が、翻る", 333857, 338436);
             textManager.VerticalLetter("仮初の", 339541, 343804);
             textManager.VerticalLetter("永遠が、", 344593, 348541);
-            textManager.VerticalLetter("終わるとき。", 349646, 353593);
+            textManager.VerticalLetter("終わるとき", 349646, 353593);
             textManager.VerticalLetter("本当の、", 354699, 358488);
-            textManager.VerticalLetter("夜明けは。そこに―", 359278, 364488);
+            textManager.VerticalLetter("夜明けはそこに―", 359278, 364488);
         }
         public void Particles(int start, int end, int start2, int end2, string layer = "particles")
         {
@@ -244,31 +246,35 @@ namespace StorybrewScripts
         }
         public void Highlight(int startTime, int endTime, int timeStep, bool RandomFade)
         {
-            for (int i = startTime; i < endTime - 1000; i += timeStep)
+            var layer = GetLayer("Highlight");
+            using (var pool = new OsbSpritePool(layer, "SB/l.png", OsbOrigin.Centre, true))
             {
-                var Fade = 0.015;
-                var fadeTime = Random(1000, 2000);
-                var sprite = GetLayer("Highlight").CreateSprite("SB/l.png");
-                var pos = new Vector2(Random(0, 727), Random(10, 380));
-                var newPos = new Vector2(Random(-107, 854), Random(-17, 480));
-                double fade = 0;
+                for (int i = startTime; i < endTime - 1000; i += timeStep)
+                {
+                    var Fade = 0.015;
+                    var fadeTime = Random(1000, 2000);
+                    var sprite = pool.Get(i, i + fadeTime * 2);
+                    var pos = new Vector2(Random(0, 727), Random(10, 380));
+                    var newPos = new Vector2(Random(-107, 854), Random(-17, 480));
+                    double fade = 0;
 
-                if (RandomFade)
-                {
-                    fade = Math.Round(Random(0.02, 0.03), 2);
-                    sprite.Move(OsbEasing.OutSine, i, i + fadeTime * 2, pos, newPos);
+                    if (RandomFade)
+                    {
+                        fade = Math.Round(Random(0.02, 0.03), 2);
+                        sprite.Move(OsbEasing.OutSine, i, i + fadeTime * 2, pos, newPos);
+                    }
+                    else
+                    {
+                        fade = Fade;
+                        sprite = GetLayer("Highlight").CreateSprite("SB/l.png", OsbOrigin.Centre, newPos);
+                    }
+                    sprite.Fade(i, i + 250, 0, fade);
+                    if (fade > 0.01)
+                    {
+                        sprite.Fade(OsbEasing.InSine, i + fadeTime, i + fadeTime * 2, fade, 0);
+                    }
+                    sprite.Scale(OsbEasing.InOutSine, i, i + fadeTime * 2, Math.Round(Random(0.85, 2), 2), 0);
                 }
-                else
-                {
-                    fade = Fade;
-                    sprite = GetLayer("Highlight").CreateSprite("SB/l.png", OsbOrigin.Centre, newPos);
-                }
-                sprite.Fade(i, i + 250, 0, fade);
-                if (fade > 0.01)
-                {
-                    sprite.Fade(OsbEasing.InSine, i + fadeTime, i + fadeTime * 2, fade, 0);
-                }
-                sprite.Scale(OsbEasing.InOutSine, i, i + fadeTime * 2, Math.Round(Random(0.85, 2), 2), 0);
             }
         }
         public void ObjectHighlight(int startTime, int endTime)
