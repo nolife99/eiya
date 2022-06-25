@@ -8,18 +8,24 @@ using System;
 
 namespace StorybrewScripts
 {
-    public class Effects : StoryboardObjectGenerator
+    class Effects : StoryboardObjectGenerator
     {
+        OsbSpritePool pool;
         public override void Generate()
         {
             Background();
             Particles(21225, 295962, 319330, 379646);
-            Highlight(114699, 155120, 250, true);
-            Highlight(230909, 271330, 250, true);
-            Highlight(319330, 379646, 250, true);
-            ObjectHighlight(21225, 51462);
-            ObjectHighlight(286488, 298488);
-            ObjectHighlight(359751, 379646);
+            using (pool = new OsbSpritePool(GetLayer("Highlight"), "SB/l.png", OsbOrigin.Centre, true))
+            {
+                pool.MaxPoolDuration = (int)AudioDuration;
+
+                Highlight(114699, 155120, 250, true);
+                Highlight(230909, 271330, 250, true);
+                Highlight(319330, 379646, 250, true);
+                ObjectHighlight(21225, 51462);
+                ObjectHighlight(286488, 298488);
+                ObjectHighlight(359751, 379646);
+            }
 
             TextManager textManager = new TextManager(this);
             textManager.VerticalLetter("凋叶棕 ft. めらみぽっぷ", 21225, 25014, true, "Bold");
@@ -98,7 +104,7 @@ namespace StorybrewScripts
 
                 var fade = Random(0.5, 1);
                 var fadeTime = Random(200, 500);
-                var duration = Random(1500, 5000);
+                var duration = Random(2000, 7500);
                 var startX = Random(50, 590);
                 var middleX = startX + Random(-100, 100);
                 var endX = middleX + Random(-50, 50);
@@ -246,50 +252,45 @@ namespace StorybrewScripts
         }
         public void Highlight(int startTime, int endTime, int timeStep, bool RandomFade)
         {
-            var layer = GetLayer("Highlight");
-            using (var pool = new OsbSpritePool(layer, "SB/l.png", OsbOrigin.Centre, true))
+            for (int i = startTime; i < endTime - 1000; i += timeStep)
             {
-                for (int i = startTime; i < endTime - 1000; i += timeStep)
-                {
-                    var Fade = 0.015;
-                    var fadeTime = Random(1000, 2000);
-                    var sprite = pool.Get(i, i + fadeTime * 2);
-                    var pos = new Vector2(Random(0, 727), Random(10, 380));
-                    var newPos = new Vector2(Random(-107, 854), Random(-17, 480));
-                    double fade = 0;
+                var Fade = 0.015;
+                var fadeTime = Random(1000, 2000);
+                var sprite = pool.Get(i, i + fadeTime * 2);
+                var pos = new Vector2(Random(0, 727), Random(10, 380));
+                var newPos = new Vector2(Random(-107, 854), Random(-17, 480));
+                double fade = 0;
 
-                    if (RandomFade)
-                    {
-                        fade = Math.Round(Random(0.02, 0.03), 2);
-                        sprite.Move(OsbEasing.OutSine, i, i + fadeTime * 2, pos, newPos);
-                    }
-                    else
-                    {
-                        fade = Fade;
-                        sprite = GetLayer("Highlight").CreateSprite("SB/l.png", OsbOrigin.Centre, newPos);
-                    }
-                    sprite.Fade(i, i + 250, 0, fade);
-                    if (fade > 0.01)
-                    {
-                        sprite.Fade(OsbEasing.InSine, i + fadeTime, i + fadeTime * 2, fade, 0);
-                    }
-                    sprite.Scale(OsbEasing.InOutSine, i, i + fadeTime * 2, Math.Round(Random(0.85, 2), 2), 0);
+                if (RandomFade)
+                {
+                    fade = Math.Round(Random(0.02, 0.03), 2);
+                    sprite.Move(OsbEasing.OutSine, i, i + fadeTime * 2, pos, newPos);
                 }
+                else
+                {
+                    fade = Fade;
+                    sprite.Move(i, newPos);
+                }
+                sprite.Fade(i, i + 250, 0, fade);
+                if (fade > 0.01)
+                {
+                    sprite.Fade(OsbEasing.InSine, i + fadeTime, i + fadeTime * 2, fade, 0);
+                }
+                sprite.Scale(OsbEasing.InOutSine, i, i + fadeTime * 2, Math.Round(Random(0.85, 2), 2), 0);
             }
         }
         public void ObjectHighlight(int startTime, int endTime)
         {
-            var hitobjectLayer = GetLayer("hl");
             foreach (var hitobject in Beatmap.HitObjects)
             {
                 if ((startTime != 0 || endTime != 0) && 
                     (hitobject.StartTime < startTime - 5 || endTime - 5 <= hitobject.StartTime))
                     continue;
 
-                var sprite = hitobjectLayer.CreateSprite("SB/l.png", OsbOrigin.Centre, hitobject.Position);
+                var sprite = pool.Get(hitobject.StartTime, hitobject.EndTime + 1000);
+                sprite.Move(hitobject.StartTime, hitobject.Position);
                 sprite.Scale(hitobject.StartTime, 0.4);
                 sprite.Fade(OsbEasing.Out, hitobject.StartTime, hitobject.EndTime + 1000, 0.7, 0);
-                sprite.Additive(hitobject.StartTime);
                 sprite.Color(hitobject.StartTime, hitobject.Color);
 
                 if (hitobject is OsuSlider)
